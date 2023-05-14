@@ -1,4 +1,4 @@
-package aiss.gitminer.model;
+package aiss.GitMiner.model;
 
 import com.fasterxml.jackson.annotation.JsonAlias;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -8,7 +8,6 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "Commit")
@@ -41,12 +40,6 @@ public class Commit {
     @JsonProperty("committed_date")
     @NotEmpty(message = "Committer date cannot be empty.")
     private String committedDate;
-
-    @JsonProperty("web_url")
-    @JsonAlias("html_url")
-    @NotEmpty(message = "URL cannot be empty." +
-            "")
-    private String webUrl;
 
     public String getId() {
         return id;
@@ -120,14 +113,6 @@ public class Commit {
         this.committedDate = committedDate;
     }
 
-    public String getWebUrl() {
-        return webUrl;
-    }
-
-    public void setWebUrl(String webUrl) {
-        this.webUrl = webUrl;
-    }
-
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
@@ -170,8 +155,6 @@ public class Commit {
         sb.append(',');
         sb.append("webUrl");
         sb.append('=');
-        sb.append(((this.webUrl == null) ? "<null>" : this.webUrl));
-        sb.append(',');
         if (sb.charAt((sb.length() - 1)) == ',') {
             sb.setCharAt((sb.length() - 1), ']');
         } else {
