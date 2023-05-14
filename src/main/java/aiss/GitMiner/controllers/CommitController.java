@@ -28,11 +28,11 @@ public class CommitController {
             tags= {"Commit", "Get"}
     )
     @GetMapping
-    public List<Commit> getCommits(@Parameter(description = "Email Addres of the Commits to retrieve's author")@RequestParam(required = false) String emailAddress)
+    public List<Commit> getCommits(@Parameter(description = "Email Address of the Commits to retrieve's author")@RequestParam(required = false) String email)
     {
-        if(emailAddress != null){
+        if(email != null){
             return repository.findAll().stream()
-                    .filter(x->x.getAuthorEmail().equals(emailAddress))
+                    .filter(x->x.getAuthorEmail().equals(email))
                     .collect(Collectors.toList());
         }
         else{
